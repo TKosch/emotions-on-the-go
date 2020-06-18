@@ -6,9 +6,9 @@ DOI: https://doi.org/10.1145/3399715.3399928
 
 The app requires at least Android 5.0 (Lollipop).
 
-## Citing the Data Set and the Paper
+## Citing the App and the Paper
 
-Below are the BibTex entries to cite the data set and the paper
+Below are the BibTex entries to cite the app and the paper
 
 ```
 @misc{kosch:emotions,
@@ -22,15 +22,17 @@ Below are the BibTex entries to cite the data set and the paper
 ```
 
 ```
-@article{kosch2020emotions, 
-    author = {Kosch, Thomas and Hassib, Mariam  and Reutter, Robin and Alt, Florian}, 
-    title = {Emotions on the Go: Mobile Emotion Assessment in Real-Time using Facial Expressions}, 
-    booktitle = {Proceedings of the International Working Conference on Advanced Visual Interfaces},
-    year = {2020}, 
-    url = {https://doi.org/10.1145/3399715.3399928},
+@inproceedings{kosch2020emotions,
+    author = {Kosch, Thomas and Hassib, Mariam and Reutter, Robin and Alt, Florian},
+    title = {Emotions on the Go: Mobile Emotion Assessment in Real-Time using Facial Expressions},
+    booktitle = {Proceedings of the 2020 International Working Conference on Advanced Visual Interfaces},
+    series = {AVI '20},
+    year = {2020},
+    isbn = {978-1-4503-7535-1/20/09},
+    location = {Salerno, Italy},
+    numpages = {9},
     doi = {10.1145/3399715.3399928},
-    address = {New York, NY, USA},
-    publisher = {Association for Computing Machinery},
-    series = {AVI '20}
-}
+    publisher = {ACM},
+    address = {New York, NY, USA}
+} 
 ```
