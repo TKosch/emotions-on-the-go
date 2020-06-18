@@ -30,7 +30,7 @@ Below are the BibTex entries to cite the data set and the paper
     url = {https://doi.org/10.1145/3399715.3399928},
     doi = {10.1145/3399715.3399928} ,
     address = {New York, NY, USA},
-    publisher = {Association for Computing Machinery}
+    publisher = {Association for Computing Machinery},
     series = {AVI '20}
 }
 ```
