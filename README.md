@@ -17,7 +17,7 @@ Below are the BibTex entries to cite the app and the paper
   year = {2020},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/TKosch/identifying-cognitive-assistance}}
+  howpublished = {\url{https://github.com/TKosch/emotions-on-the-go}}
 }
 ```
 
