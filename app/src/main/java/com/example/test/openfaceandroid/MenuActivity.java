@@ -190,12 +190,6 @@ public class MenuActivity extends AppCompatActivity {
         startService(new Intent(MenuActivity.this, CameraService.class));
         Toast.makeText(this, "Start", Toast.LENGTH_SHORT).show();
         RefreshServiceGUIInformation();
-//        new Timer().schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                finish();
-//            }
-//        }, 5000);
     }
 
     private void RefreshServiceGUIInformation() {

@@ -240,14 +240,7 @@ public final class MainActivity extends AppCompatActivity {
     protected void createCameraPreview() {
         Log.e(TAG, "createCameraPreview");
         try {
-//            original
-//            SurfaceTexture texture = textureView.getSurfaceTexture();
-//            assert texture != null;
-//            texture.setDefaultBufferSize(imageDimension.getWidth(), imageDimension.getHeight());
-//            texture.setDefaultBufferSize(WIDTH, HEIGHT);
-//            Surface surface = new Surface(texture);
             captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-//            captureRequestBuilder.addTarget(surface);
             captureRequestBuilder.addTarget(mImageReader.getSurface());
             cameraDevice.createCaptureSession(Arrays.asList( mImageReader.getSurface()), new CameraCaptureSession.StateCallback() { //surface,
                 @Override
@@ -286,12 +279,6 @@ public final class MainActivity extends AppCompatActivity {
                     continue;
                 }
 
-//                StreamConfigurationMap map = characteristics.get(
-//                        CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-//                if (map == null) {
-//                    continue;
-//                }
-
                 mImageReader = ImageReader.newInstance(WIDTH, HEIGHT,
                         ImageFormat.YUV_420_888, /*maxImages*/2);
                 mImageReader.setOnImageAvailableListener(
@@ -314,34 +301,25 @@ public final class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
             // Currently an NPE is thrown when the Camera2API is used but not supported on the
-            // device this code runs.
-//            ErrorDialog.newInstance(getString(R.string.camera_error))
-//                    .show(getChildFragmentManager(), FRAGMENT_DIALOG);
         }
     }
 
     private final Runnable checkResult = new Runnable() {
         @Override
         public final void run() {
-//                TEST ROBIN
             if (Wrapper.dequeue() &&
                     Wrapper.result.pixeldata != null &&
                     Wrapper.result.pixeldata.length >= BYTESIZE) {
                 final ByteBuffer bytebuf = ByteBuffer.wrap(Wrapper.result.pixeldata);
                 // show last frame
                 bitmap.copyPixelsFromBuffer(bytebuf);
-                // Test um das Raw Bild anzuzeigen: leider auch 90° gedreht
-//                if (BMTEST != null)
-//                    vImageView.setImageBitmap(BMTEST);
                 vImageView.setImageBitmap(bitmap);
             }
 
             // LOGGING
-            // each 999 ms
             LOG_INTERVAL -= RESULTSPAN;
             if (LOG_INTERVAL <= 0.0) {
                 // Check if camera is open:
-//                boolean camUse= isCameraInUse();
 
                 Log.d(TAG, "A,H,N,S,att,face\n"
                         + Wrapper.result.emotFloatAngry
@@ -368,11 +346,6 @@ public final class MainActivity extends AppCompatActivity {
         public void onImageAvailable(ImageReader reader) {
             Image image = reader.acquireLatestImage();
             if (image != null) {
-                // ein paar tests
-//                Image.Plane plane = image.getPlanes()[0];
-//                ByteBuffer buffer = plane.getBuffer();
-//                BMTEST = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8);
-//                BMTEST.copyPixelsFromBuffer(buffer);
 
                 byte[] data = convertYUV420ToNV21_ALL_PLANES(image);// forward pixeldata to native openface++
 
@@ -383,8 +356,6 @@ public final class MainActivity extends AppCompatActivity {
         }
     };
     /////////////// CAMERA 2 END
-
-    /////////////// ROBIN TEST FUNKTIONEN START
 
     public static byte[] rotateNV21_2(final byte[] yuv,
                                       final int width,
@@ -450,7 +421,6 @@ public final class MainActivity extends AppCompatActivity {
     }
 
 
-    // Bei der Funktion Squeeze und Farben falsch
     public static byte[] rotateY12toYUV420(byte[] input, int width, int height, int rotation) {
         byte[] output = new byte[input.length];
         boolean swap = (rotation == 90 || rotation == 270);
@@ -490,7 +460,6 @@ public final class MainActivity extends AppCompatActivity {
         return output;
     }
 
-    // Bei der Funktion Squeeze
     public static byte[] rotateNV21(byte[] input, int width, int height, int rotation) {
         byte[] output = new byte[input.length];
         boolean swap = (rotation == 90 || rotation == 270);

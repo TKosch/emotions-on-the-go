@@ -40,12 +40,7 @@ public class ActivityRecognizedService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-//        if (LOG_FILE_ACT == null)
-//        {
-//            LOG_FILE_ACT = intent.getStringExtra(Constants.LOG_FILE_ACT);
-//        }
         ActivityRecognitionResult result = ActivityRecognitionResult.extractResult(intent);
-//        Intent localIntent = new Intent(Constants.BROADCAST_ACTION);
 
         ArrayList<DetectedActivity> googleActivities = new ArrayList<>();
         // Get the list of the probable activities associated with the current state of the
@@ -103,49 +98,4 @@ public class ActivityRecognizedService extends IntentService {
         Logging.appendLog(logRes, Logging.LOG_FILE_ACT, true, true);
 
     }
-
-//    public void appendLog(String text, String file, boolean append, boolean timestamp)
-//    {
-//        File logFile = new File(file);
-//        if (!logFile.exists())
-//        {
-//            try
-//            {
-//                File folder = new File(logFile.getParent());
-//                if (!folder.exists()) {
-//                    folder.mkdir();
-//                }
-//                logFile.createNewFile();
-//                BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, append));
-//                buf.append("Init log " + "\n\n");
-//                buf.append("Time;STILL;ON_FOOT;WALKING;RUNNING;ON_BICYCLE;IN_VEHICLE;TILTING;UNKNOWN");
-//                buf.newLine();
-//                buf.close();
-//            }
-//            catch (IOException e)
-//            {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-//        }
-//        try
-//        {
-//            //BufferedWriter for performance, true to set append to file flag
-//            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, append));
-//            if (timestamp)
-//            {
-//                String ts = Globals.GetCurrentTimeStamp(true);
-//                buf.append(ts + "," + text);
-//            }
-//            else
-//                buf.append(text);
-//            buf.newLine();
-//            buf.close();
-//        }
-//        catch (IOException e)
-//        {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//    }
 }

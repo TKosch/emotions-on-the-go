@@ -21,7 +21,6 @@ public class DialogEmotions extends AppCompatActivity {
     }
 
     public void btnSubmit_onClick(View v) {
-//        //Globals.LOG_FILE_USER_EMOTIONRATING = System.getenv("EXTERNAL_STORAGE") + "/OpenFaceAndroid" + "/OFA_USEREMOTRATING_TEST.log";
         Switch swAngry = (Switch) findViewById(R.id.swAngry);
         Switch swDigust = (Switch) findViewById(R.id.swDisgusted);
         Switch swFeared = (Switch) findViewById(R.id.swFeared);
@@ -47,45 +46,5 @@ public class DialogEmotions extends AppCompatActivity {
 
         Logging.appendLog(logRes, Logging.LOG_FILE_USER_EMOTIONRATING, true, true);
         finish();
-//        Intent startMain = new Intent(Intent.ACTION_MAIN);
-//        startMain.addCategory(Intent.CATEGORY_HOME);
-//        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(startMain);
     }
-
-
-//    public void appendLog(String text, String file, boolean append, boolean timestamp) {
-//        File logFile = new File(file);
-//        if (!logFile.exists()) {
-//            try {
-//                File folder = new File(logFile.getParent());
-//                if (!folder.exists()) {
-//                    folder.mkdir();
-//                }
-//                logFile.createNewFile();
-//                BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, append));
-//                buf.append("Init log " + "\n\n");
-//                buf.append("Time;Anger;Disgust;Fear;Happiness;Neutral;Sad;Surprised");
-//                buf.newLine();
-//                buf.close();
-//            } catch (IOException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-//        }
-//        try {
-//            //BufferedWriter for performance, true to set append to file flag
-//            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, append));
-//            if (timestamp) {
-//                String ts = Globals.GetCurrentTimeStamp(true);
-//                buf.append(ts + ";" + text);
-//            } else
-//                buf.append(text);
-//            buf.newLine();
-//            buf.close();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//    }
 }

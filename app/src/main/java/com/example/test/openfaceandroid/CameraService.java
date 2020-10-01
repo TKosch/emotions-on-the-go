@@ -99,12 +99,6 @@ public class CameraService extends Service implements GoogleApiClient.Connection
     private static boolean initCamera;
     SharedPreferences prefs;
 
-//    private static String LOG_PATH = "";
-//
-//    private static String LOG_FILE_CAM = "";
-//    private static String DEBUG_FILE_CAM = "";
-//
-//    private static String LOG_FILE_ACT = "";
 
     HashMap<String, Boolean> cameraAvailableList;
 
@@ -129,9 +123,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
     // Weather
     private YahooWeather mYahooWeather = YahooWeather.getInstance(5000, true);
     private final static int TIMESPAN_WEATHERLOG = 1000 * 60 * 60; // 1000 ms * 60s * 60m
-    //    private int TIMETICK_WEATHERLOG = 1000 * 60 * 60;
     private long LAST_MS_WEATHERLOG = 0;
-//    String[] lastWeatherInfo = new String[3];
 
     // GeoLocation for Weather
     float GeoLong = Float.NaN;
@@ -256,7 +248,6 @@ public class CameraService extends Service implements GoogleApiClient.Connection
                 if (DEBUG_LOG) {
                     Logging.appendLog("Logging LastLocation", Logging.DEBUG_FILE_CAM, true, true);
                 }
-                //noinspection MissingPermission
                 mFusedLocationClient.getLastLocation()
                         .addOnSuccessListener(new OnSuccessListener<Location>() {
                             @Override
@@ -291,11 +282,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
                     if (mLocation != null) {
                         locationString = mLocation.getLongitude() + ";" + mLocation.getLatitude();
                     }
-//                    // Weather
-//                    String weatherString = "";
-//                    if (lastWeatherInfo != null) {
-//                        weatherString = lastWeatherInfo[1] + "," + lastWeatherInfo[2];
-//                    }
+
                     String logRes = Wrapper.result.emotFloatAngry
                             + ";" + Wrapper.result.emotFloatDisgusted
                             + ";" + Wrapper.result.emotFloatFeared
@@ -446,7 +433,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
 
             cameraAvailableList.put(cameraId, false);
 
-            // wenn nicht im Init dann pausieren
+            // pause when not in init
             if (!initCamera) {
                 // do the same as in onPause
                 isPaused = true;
@@ -494,7 +481,6 @@ public class CameraService extends Service implements GoogleApiClient.Connection
 
         //Camera stuff
         vImageView = MenuActivity.vImageView;
-//        context = MenuActivity.context;
 
         startAvailabilityBackgroundThread();
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
@@ -691,8 +677,6 @@ public class CameraService extends Service implements GoogleApiClient.Connection
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-//        throw new UnsupportedOperationException("Not yet implemented");
         return null;
     }
 
@@ -747,7 +731,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
                 StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
                 assert map != null;
                 imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
-                // ROBIN: In Service Permission check ?!
+
                 // Add permission for camera and let user grant the permission
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MenuActivity.activity, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CAMERA_PERMISSION);
@@ -799,7 +783,6 @@ public class CameraService extends Service implements GoogleApiClient.Connection
     private byte[] convertYUV420ToNV21_ALL_PLANES(Image imgYUV420) {
 
         byte[] rez;
-        //byte[] result = imgYUV420;
 
         ByteBuffer buffer0 = imgYUV420.getPlanes()[0].getBuffer();
         ByteBuffer buffer1 = imgYUV420.getPlanes()[1].getBuffer();
@@ -821,14 +804,8 @@ public class CameraService extends Service implements GoogleApiClient.Connection
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             // swap 1 and 2 as blue and red colors are swapped
-            // kompletter buffer0
+
             outputStream.write(buffer0_byte);
-//            // buffer 1 und 2 immer nur jeder 2.
-//            for (int n=0;n<buffer1_size;n+=2)
-//            {
-//                outputStream.write((byte)buffer2_byte[n]);
-//                outputStream.write((byte)buffer1_byte[n]);
-//            }
             outputStream.write(buffer2_byte);
             outputStream.write(buffer1_byte);
         } catch (IOException e) {
