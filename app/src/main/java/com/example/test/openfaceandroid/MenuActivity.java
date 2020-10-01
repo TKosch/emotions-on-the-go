@@ -58,7 +58,6 @@ public class MenuActivity extends AppCompatActivity {
     private final static int HEIGHT = 480;
     private final static int PIXELBYTES = 4;
     private final static int BYTESIZE = WIDTH * HEIGHT * PIXELBYTES;
-    private final static int RESULTSPAN = 33;
     private int LOG_INTERVAL = 990;
     private final static int PERMISSION_REQUEST = 1;
     //    private final static Handler handler = new Handler(Looper.getMainLooper());

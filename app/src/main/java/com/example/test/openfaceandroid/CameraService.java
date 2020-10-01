@@ -87,7 +87,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
     private final static int HEIGHT = 480;
     private final static int PIXELBYTES = 4;
     private final static int BYTESIZE = WIDTH * HEIGHT * PIXELBYTES;
-    private final static int RESULTSPAN = 990;
+    private final static int RESULTSPAN = 33;
     private final static Handler handler = new Handler(Looper.getMainLooper());
     private final static Bitmap bitmap = Bitmap.createBitmap(HEIGHT, WIDTH, Bitmap.Config.ARGB_8888); // swaped
     private final static byte[][] buffers = new byte[2][BYTESIZE];
