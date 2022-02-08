@@ -35,7 +35,7 @@ public class ActivityRecognizedService extends IntentService {
 //    static String LOG_FILE_ACT = null;
 
     public ActivityRecognizedService() {
-        super("ActivityRecognizedService");
+            super("ActivityRecognizedService");
     }
 
     @Override

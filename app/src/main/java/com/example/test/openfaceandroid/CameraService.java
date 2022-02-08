@@ -117,7 +117,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
 
     private FusedLocationProviderClient mFusedLocationClient;
     Location mLocation = null;
-    private final static int TIMESPAN_LOCATIONLOG = 1000 * 60 * 15; // 1000 (ms) * 60(s) * 15(m)
+    private final static int TIMESPAN_LOCATIONLOG = 1000 * 5; // 1000 (ms) * 60(s) * 15(m)
     private long LAST_MS_LOCATIONLOG = 0;
 
     // Weather
@@ -130,7 +130,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
     float GeoLat = Float.NaN;
 
     // User Dialog Ground Truth
-    private final static int TIMESPAN_USERDIALOG = 1000 * 60 * 15;
+    private final static int TIMESPAN_USERDIALOG = 1000 * 5;
     //    private int TIMETICK_USERDIALOG = TIMESPAN_USERDIALOG;
     private long LAST_MS_USERDIALOG = 0;
 
@@ -283,6 +283,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
                         locationString = mLocation.getLongitude() + ";" + mLocation.getLatitude();
                     }
 
+
                     String logRes = Wrapper.result.emotFloatAngry
                             + ";" + Wrapper.result.emotFloatDisgusted
                             + ";" + Wrapper.result.emotFloatFeared
@@ -330,6 +331,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
             // 33ms = ~30fps max output fps
             if (!isPaused)
                 handler.postDelayed(checkResult, RESULTSPAN);
+
         }
     };
 
@@ -374,6 +376,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
     };
 
     private CameraManager.AvailabilityCallback mAvailabilityCallback = new CameraManager.AvailabilityCallback() {
+
         @Override
         public void onCameraAvailable(String cameraId) {
             Log.e(TAG, "onCameraAvailable: " + cameraId);
@@ -404,7 +407,8 @@ public class CameraService extends Service implements GoogleApiClient.Connection
                                 startBackgroundThread();
                                 handler.postDelayed(checkResult, RESULTSPAN);
                                 openCamera();
-                            } else {
+                            }
+                            else {
                                 Log.e(TAG, "ReInit failed: isPaused=" + isPaused
                                         + ", SCREEN_ON=" + SCREEN_ON);
                                 if (DEBUG_LOG)
@@ -492,6 +496,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
             e.printStackTrace();
             Logging.appendLog("onCreate ERROR " + e + "\t" + e.toString(), Logging.DEBUG_FILE_CAM, true, true);
         }
+
         manager.registerAvailabilityCallback(mAvailabilityCallback, mAvailabilityHandler);
 
         // requests always higher equal lollipop
@@ -687,6 +692,7 @@ public class CameraService extends Service implements GoogleApiClient.Connection
         try {
             captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             captureRequestBuilder.addTarget(mImageReader.getSurface());
+
             cameraDevice.createCaptureSession(Arrays.asList(mImageReader.getSurface()), new CameraCaptureSession.StateCallback() {
                 @Override
                 public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
@@ -724,10 +730,13 @@ public class CameraService extends Service implements GoogleApiClient.Connection
                 if (!(facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT)) {
                     continue;
                 }
+
                 mImageReader = ImageReader.newInstance(WIDTH, HEIGHT,
                         ImageFormat.YUV_420_888, 1);
+
                 mImageReader.setOnImageAvailableListener(
                         mOnImageAvailableListener, mBackgroundHandler);
+
                 StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
                 assert map != null;
                 imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];

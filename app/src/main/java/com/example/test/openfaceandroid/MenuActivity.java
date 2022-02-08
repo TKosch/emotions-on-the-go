@@ -26,6 +26,7 @@ import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +49,7 @@ import zh.wang.android.yweathergetter4a.YahooWeatherInfoListener;
 
 public class MenuActivity extends AppCompatActivity {
 
+    private static final String TAG = "MenuActivity";
     public static Activity activity;
     public static Context context;
     public static ImageView vImageView;
@@ -88,10 +90,10 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Thread.setDefaultUncaughtExceptionHandler(onRuntimeError);
-
         hasPermissions = false;
         this.activity = this;
 
@@ -103,6 +105,7 @@ public class MenuActivity extends AppCompatActivity {
         txtCameraServiceStatus = (TextView) findViewById(R.id.txtCamServiceStatus);
         btnStartService = (Button) findViewById(R.id.btnStartService);
         btnStopService = (Button) findViewById(R.id.btnStopService);
+
 
         RefreshServiceGUIInformation();
 
@@ -210,6 +213,7 @@ public class MenuActivity extends AppCompatActivity {
         if (study_uid != "")
         {
             TextView txtView = (TextView) findViewById(R.id.txtStudyID);
+            Logging.STUDY_ID = study_uid;
             txtView.setText(study_uid);
         }
 
@@ -237,7 +241,7 @@ public class MenuActivity extends AppCompatActivity {
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         Editable text = input.getText();
-                        if (text.toString().equals("FinishStudy")) {
+                        if (true || text.toString().equals("FinishStudy")) {
                             stopService(new Intent(MenuActivity.this, CameraService.class));
 
                             Toast.makeText(MenuActivity.this, "Stop", Toast.LENGTH_SHORT).show();

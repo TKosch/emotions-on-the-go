@@ -26,9 +26,10 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-
+    implementation 'com.google.firebase:firebase-database'
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android.gms:play-services:11.0.2'
     compile 'zh.wang.android:yweathergetter4a:1.3.0'
 }
+apply plugin: 'com.google.gms.google-services'

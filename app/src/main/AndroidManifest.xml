@@ -13,6 +13,7 @@
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
 
+
     <uses-feature android:name="android.hardware.camera2.full" />
 
     <!-- ####################################################################################### -->

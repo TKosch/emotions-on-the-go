@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "327339328201",
+    "project_id": "emotions-on-the-go",
+    "storage_bucket": "emotions-on-the-go.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327339328201:android:b88d2ec1538c0f4df00318",
+        "android_client_info": {
+          "package_name": "com.example.test.openfaceandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327339328201-4eicoqg8kntecdh6838ghuejckj1bb3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC04yqlaW2lHWDnrJOuxLwsyZcgKAyhQe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327339328201-4eicoqg8kntecdh6838ghuejckj1bb3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

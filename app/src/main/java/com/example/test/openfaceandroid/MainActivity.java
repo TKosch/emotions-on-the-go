@@ -42,6 +42,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.graphics.ImageFormat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -106,6 +107,7 @@ public final class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         textureView = (TextureView) findViewById(R.id.texture);
         assert textureView != null;
         //textureView.setSurfaceTextureListener(textureListener);
