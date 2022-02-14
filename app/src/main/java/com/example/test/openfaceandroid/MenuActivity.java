@@ -234,28 +234,31 @@ public class MenuActivity extends AppCompatActivity {
         // Set an EditText view to get user input
         final EditText input = new EditText(MenuActivity.this);
 
-        new AlertDialog.Builder(MenuActivity.this)
-                .setTitle("Studie Stoppen")
-                .setMessage("Bitte Passwort eingeben")
-                .setView(input)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Editable text = input.getText();
-                        if (true || text.toString().equals("FinishStudy")) {
-                            stopService(new Intent(MenuActivity.this, CameraService.class));
+        stopService(new Intent(MenuActivity.this, CameraService.class));
+        RefreshServiceGUIInformation();
 
-                            Toast.makeText(MenuActivity.this, "Stop", Toast.LENGTH_SHORT).show();
-                            RefreshServiceGUIInformation();
-                        } else
-                            Toast.makeText(MenuActivity.this, "Falsches Passwort", Toast.LENGTH_SHORT).show();
-
-                        // deal with the editable
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        // Do nothing.
-                    }
-                }).show();
+//        new AlertDialog.Builder(MenuActivity.this)
+//                .setTitle("Studie Stoppen")
+//                .setMessage("Bitte Passwort eingeben")
+//                .setView(input)
+//                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        Editable text = input.getText();
+//                        if (true || text.toString().equals("FinishStudy")) {
+//                            stopService(new Intent(MenuActivity.this, CameraService.class));
+//
+//                            Toast.makeText(MenuActivity.this, "Stop", Toast.LENGTH_SHORT).show();
+//                            RefreshServiceGUIInformation();
+//                        } else
+//                            Toast.makeText(MenuActivity.this, "Falsches Passwort", Toast.LENGTH_SHORT).show();
+//
+//                        // deal with the editable
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        // Do nothing.
+//                    }
+//                }).show();
     }
 }
