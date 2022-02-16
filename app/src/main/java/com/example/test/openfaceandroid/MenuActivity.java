@@ -193,6 +193,14 @@ public class MenuActivity extends AppCompatActivity {
         startService(new Intent(MenuActivity.this, CameraService.class));
         Toast.makeText(this, "Start", Toast.LENGTH_SHORT).show();
         RefreshServiceGUIInformation();
+
+        //stop study after 10 seconds
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btnStopService.performClick();
+            }
+        }, 10000);
     }
 
     private void RefreshServiceGUIInformation() {
@@ -237,6 +245,7 @@ public class MenuActivity extends AppCompatActivity {
         stopService(new Intent(MenuActivity.this, CameraService.class));
         RefreshServiceGUIInformation();
 
+        Toast.makeText(this, "Study stopped", Toast.LENGTH_SHORT).show();
 //        new AlertDialog.Builder(MenuActivity.this)
 //                .setTitle("Studie Stoppen")
 //                .setMessage("Bitte Passwort eingeben")
